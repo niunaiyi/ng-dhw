@@ -91,7 +91,7 @@
                     }}</label>
                     <v-select
                       name="roles"
-                      label="title"
+                      label="name"
                       :key="'roles-field'"
                       :value="entry.roles"
                       :options="lists.roles"

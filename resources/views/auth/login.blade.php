@@ -9,7 +9,7 @@
                         @csrf
                         <div class="card card-login">
                             <div class="card-header card-header-primary text-center">
-                                <h4 class="card-title">{{ __('global.login') }}</h4>
+                                <h4 class="card-title">登录</h4>
                             </div>
 
                             @if(session('status'))
@@ -54,25 +54,25 @@
                                     <label class="form-check-label">
                                         <input type="checkbox" name="remember" class="form-check-input">
                                         <span class="form-check-sign"><span class="check"></span></span>
-                                        Remember me
+                                        记住我
                                     </label>
                                 </div>
                             </div>
                             <div class="card-footer justify-content-center flex-column">
                                 <button type="submit" class="btn btn-round btn-primary">
-                                    {{ __('global.login') }}
+                                    登录
                                 </button>
 
                                 <div class="d-flex justify-content-between">
                                     @if(Route::has('password.request'))
                                         <a class="btn btn-link btn-primary" href="{{ route('password.request') }}">
-                                            {{ __('global.forgot_password') }}
+                                            忘记密码
                                         </a>
                                     @endif
 
                                     @if(Route::has('register'))
                                         <a class="btn btn-link btn-primary" href="{{ route('register') }}">
-                                            {{ __('global.register') }}
+                                            注册
                                         </a>
                                     @endif
                                 </div>

@@ -37,7 +37,7 @@ class RolesApiController extends Controller
 
         return response([
             'meta' => [
-                'permissions' => Permission::get(['id', 'title']),
+                'permissions' => Permission::get(['id', 'name']),
             ],
         ]);
     }
@@ -66,7 +66,7 @@ class RolesApiController extends Controller
         return response([
             'data' => new RoleResource($role->load(['permissions'])),
             'meta' => [
-                'permissions' => Permission::get(['id', 'title']),
+                'permissions' => Permission::get(['id', 'name']),
             ],
         ]);
     }

@@ -2,29 +2,30 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
 use App\Support\HasAdvancedFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kalnoy\Nestedset\NodeTrait;
 
-class Role extends Model
+class Address extends Model
 {
     use HasAdvancedFilter;
     use SoftDeletes;
     use HasFactory;
+    use NodeTrait;
 
-    public $table = 'roles';
+    public $table = 'addresses';
 
     protected $orderable = [
         'id',
-        'title',
+        'name',
+        'company.company_name',
     ];
 
     protected $filterable = [
         'id',
-        'title',
-        'permissions.title',
+        'name',
     ];
 
     protected $dates = [
@@ -34,15 +35,24 @@ class Role extends Model
     ];
 
     protected $fillable = [
-        'title',
+        'name',
+        'type',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public function permissions()
+    public function type()
     {
-        return $this->belongsToMany(Permission::class)->orderBy('name');
+        return $this->belongsTo(Dict::class, 'type_value', 'value')
+            ->withDefault([
+                'type' => 'dzlx',
+            ]);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Address::class, 'parent_id', 'id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Permission;
+use App\Models\ContactCompany;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class UpdatePermissionRequest extends FormRequest
+class UpdateAddressRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('permission_edit');
+        return Gate::allows('address_edit');
     }
 
     public function rules()
@@ -19,10 +19,11 @@ class UpdatePermissionRequest extends FormRequest
         return [
             'name' => [
                 'string',
-                'required',
+                'nullable',
             ],
-            'title' => [
-                'string',
+            'type_value' => [
+                'integer',
+                'exists:dicts,value',
                 'required',
             ],
         ];

@@ -37,7 +37,7 @@ class UsersApiController extends Controller
 
         return response([
             'meta' => [
-                'roles' => Role::get(['id', 'title']),
+                'roles' => Role::get(['id', 'name']),
             ],
         ]);
     }
@@ -66,7 +66,7 @@ class UsersApiController extends Controller
         return response([
             'data' => new UserResource($user->load(['roles'])),
             'meta' => [
-                'roles' => Role::get(['id', 'title']),
+                'roles' => Role::get(['id', 'name']),
             ],
         ]);
     }

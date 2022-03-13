@@ -31,7 +31,7 @@
         <li class="nav-item">
           <a href="#" class="nav-link" @click.prevent="logout">
             <i class="material-icons">power_settings_new</i>
-            <p>{{ $t('global.logout') }}</p>
+            <p>登出</p>
           </a>
         </li>
       </ul>
