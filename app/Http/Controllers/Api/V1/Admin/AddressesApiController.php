@@ -36,7 +36,7 @@ class AddressesApiController extends Controller
 
         return response([
             'meta' => [
-                'type' => Dict::get(['id', 'name']),
+                'type' => Dict::where('type', 'dzlx')->get(['id', 'name']),
             ],
         ]);
     }
@@ -64,7 +64,7 @@ class AddressesApiController extends Controller
         return response([
             'data' => new AddressResource($address->load(['roles'])),
             'meta' => [
-                'type' => Dict::get(['id', 'name']),
+                'type' => Dict::where('type', 'dzlx')->get(['id', 'name']),
             ],
         ]);
     }

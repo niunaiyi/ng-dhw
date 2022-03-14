@@ -8,8 +8,7 @@
                             <i class="material-icons">assignment</i>
                         </div>
                         <h4 class="card-title">
-                            {{ $t('global.table') }}
-                            <strong>{{ $t('cruds.permission.title') }}</strong>
+                            <strong>权限</strong>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -21,7 +20,7 @@
                             <i class="material-icons">
                                 add
                             </i>
-                            {{ $t('global.add') }}
+                            创建
                         </router-link>
                         <button
                             type="button"
@@ -33,7 +32,7 @@
                             <i class="material-icons" :class="{ 'fa-spin': loading }">
                                 refresh
                             </i>
-                            {{ $t('global.refresh') }}
+                            刷新
                         </button>
                     </div>
                     <div class="card-body">

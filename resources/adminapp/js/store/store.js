@@ -16,6 +16,8 @@ import ProductTagsIndex from './cruds/ProductTags'
 import ProductTagsSingle from './cruds/ProductTags/single'
 import ProductsIndex from './cruds/Products'
 import ProductsSingle from './cruds/Products/single'
+import AddressesIndex from './cruds/Addresses'
+import PAddressesSingle from './cruds/Addresses/single'
 import ContactCompaniesIndex from './cruds/ContactCompanies'
 import ContactCompaniesSingle from './cruds/ContactCompanies/single'
 import ContactContactsIndex from './cruds/ContactContacts'
@@ -26,25 +28,27 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
-  modules: {
-    Alert,
-    I18NStore,
-    PermissionsIndex,
-    PermissionsSingle,
-    RolesIndex,
-    RolesSingle,
-    UsersIndex,
-    UsersSingle,
-    ProductCategoriesIndex,
-    ProductCategoriesSingle,
-    ProductTagsIndex,
-    ProductTagsSingle,
-    ProductsIndex,
-    ProductsSingle,
-    ContactCompaniesIndex,
-    ContactCompaniesSingle,
-    ContactContactsIndex,
-    ContactContactsSingle
-  },
-  strict: debug
+    modules: {
+        Alert,
+        I18NStore,
+        PermissionsIndex,
+        PermissionsSingle,
+        RolesIndex,
+        RolesSingle,
+        UsersIndex,
+        UsersSingle,
+        ProductCategoriesIndex,
+        ProductCategoriesSingle,
+        ProductTagsIndex,
+        ProductTagsSingle,
+        ProductsIndex,
+        ProductsSingle,
+        AddressesIndex,
+        PAddressesSingle,
+        ContactCompaniesIndex,
+        ContactCompaniesSingle,
+        ContactContactsIndex,
+        ContactContactsSingle
+    },
+    strict: debug
 })

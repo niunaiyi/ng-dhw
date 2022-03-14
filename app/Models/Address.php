@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Support\HasAdvancedFilter;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,12 +21,15 @@ class Address extends Model
     protected $orderable = [
         'id',
         'name',
-        'company.company_name',
+        'fullname',
+        'type.desc',
     ];
 
     protected $filterable = [
         'id',
         'name',
+        'fullname',
+        'type.desc',
     ];
 
     protected $dates = [
@@ -36,6 +40,7 @@ class Address extends Model
 
     protected $fillable = [
         'name',
+        'fullname',
         'type',
         'created_at',
         'updated_at',

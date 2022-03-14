@@ -31,6 +31,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('products/media', 'ProductApiController@storeMedia')->name('products.storeMedia');
     Route::resource('products', 'ProductApiController');
 
+    //Address
+    Route::resource('addresses', 'AddressesApiController');
+
     // Contact Company
     Route::resource('contact-companies', 'ContactCompanyApiController');
 

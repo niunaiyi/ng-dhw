@@ -11,7 +11,7 @@ function initialState() {
   }
 }
 
-const route = 'contact-contacts'
+const route = 'addresses'
 
 const getters = {
   data: state => state.data,
