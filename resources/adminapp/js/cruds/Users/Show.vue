@@ -58,7 +58,7 @@
                           {{ $t('cruds.user.fields.roles') }}
                         </td>
                         <td>
-                          <datatable-list :row="entry" field="roles.title">
+                          <datatable-list :row="entry" field="roles.name">
                           </datatable-list>
                         </td>
                       </tr>

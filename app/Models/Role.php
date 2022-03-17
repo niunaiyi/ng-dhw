@@ -18,11 +18,13 @@ class Role extends Model
 
     protected $orderable = [
         'id',
+        'name',
         'title',
     ];
 
     protected $filterable = [
         'id',
+        'name',
         'title',
         'permissions.title',
     ];
@@ -34,6 +36,7 @@ class Role extends Model
     ];
 
     protected $fillable = [
+        'name',
         'title',
         'created_at',
         'updated_at',

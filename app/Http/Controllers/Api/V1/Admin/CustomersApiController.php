@@ -17,7 +17,7 @@ class CustomersApiController extends Controller
     public function index()
     {
         abort_if(Gate::denies('customer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        \Log::info(Customer::with(['type', 'address'])->advancedFilter());
         return new CustomerResource(Customer::with(['type', 'address'])->advancedFilter());
     }
 

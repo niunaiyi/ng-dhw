@@ -23,6 +23,26 @@
                                     <div
                                         class="form-group bmd-form-group"
                                         :class="{
+                                                  'has-items': entry.name,
+                                                  'is-focused': activeField == 'name'
+                                                }"
+                                    >
+                                        <label class="bmd-label-floating required">{{
+                                                $t('cruds.role.fields.name')
+                                            }}</label>
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            :value="entry.name"
+                                            @input="updateName"
+                                            @focus="focusField('name')"
+                                            @blur="clearFocus"
+                                            required
+                                        />
+                                    </div>
+                                    <div
+                                        class="form-group bmd-form-group"
+                                        :class="{
                                                   'has-items': entry.title,
                                                   'is-focused': activeField == 'title'
                                                 }"

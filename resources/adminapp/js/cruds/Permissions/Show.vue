@@ -31,11 +31,19 @@
                       </tr>
                       <tr>
                         <td class="text-primary">
-                          {{ $t('cruds.permission.fields.title') }}
+                          {{ $t('cruds.permission.fields.name') }}
                         </td>
                         <td>
-                          {{ entry.title }}
+                          {{ entry.name }}
                         </td>
+                      </tr>
+                      <tr>
+                          <td class="text-primary">
+                              {{ $t('cruds.permission.fields.title') }}
+                          </td>
+                          <td>
+                              {{ entry.title }}
+                          </td>
                       </tr>
                     </tbody>
                   </div>
