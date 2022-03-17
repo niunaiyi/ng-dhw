@@ -31,12 +31,15 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('products/media', 'ProductApiController@storeMedia')->name('products.storeMedia');
     Route::resource('products', 'ProductApiController');
 
-    //Address
+    // Address
     Route::resource('addresses', 'AddressesApiController');
     Route::get('addresses/{id}/children', 'AddressesApiController@children');
 
-    //Customer
+    // Customer
     Route::resource('customers', 'CustomersApiController');
+
+    // Drop
+    Route::resource('drops', 'DropsApiController');
 
     // Contact Company
     Route::resource('contact-companies', 'ContactCompanyApiController');

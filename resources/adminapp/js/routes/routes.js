@@ -222,7 +222,19 @@ const routes = [
                         name: 'customers.edit',
                         component: () => import('@cruds/Customers/Edit.vue'),
                         meta: {title: 'cruds.customer.title'}
-                    }
+                    },
+                    {
+                        path: 'drops',
+                        name: 'drops.index',
+                        component: () => import('@cruds/Drops/Index.vue'),
+                        meta: {title: 'cruds.drop.title'}
+                    },
+                    {
+                        path: 'drops/:id',
+                        name: 'drops.show',
+                        component: () => import('@cruds/Drops/Show.vue'),
+                        meta: {title: 'cruds.drop.title'}
+                    },
                 ]
             },
             {

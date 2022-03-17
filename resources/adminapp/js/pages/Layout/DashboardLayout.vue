@@ -94,6 +94,12 @@ export default {
                             icon: 'table_view',
                             path: {name: 'customers.index'},
                             gate: 'customer_access'
+                        },
+                        {
+                            title: 'cruds.drop.title',
+                            icon: 'table_view',
+                            path: {name: 'drops.index'},
+                            gate: 'drop_access'
                         }
                     ]
                 },

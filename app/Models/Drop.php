@@ -7,39 +7,31 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Customer extends Model
+class Drop extends Model
 {
     use HasAdvancedFilter;
     use SoftDeletes;
-    use InteractsWithMedia;
     use HasFactory;
 
-
-    public $table = 'customers';
+    public $table = 'drops';
 
     protected $orderable = [
         'id',
-        'nickname',
-        'realname',
-        'phonenumber',
+        'customer.phonenumber',
         'address.fullname',
-        'score',
-        'unionid',
-        'cardno',
-        'type.desc',
+        'device.name',
+        'device.uuid',
+        'type.name',
     ];
 
     protected $filterable = [
         'id',
-        'nickname',
-        'realname',
-        'phonenumber',
+        'customer.phonenumber',
         'address.fullname',
-        'unionid',
-        'cardno',
-        'type.desc',
+        'device.name',
+        'device.uuid',
+        'type.name',
     ];
 
     protected $dates = [
@@ -49,29 +41,30 @@ class Customer extends Model
     ];
 
     protected $fillable = [
-        'id',
-        'nickname',
-        'realname',
-        'phonenumber',
-        'address',
-        'score',
-        'type.desc',
+        'customer.phonenumber',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
+    public function device()
+    {
+        return $this->belongsTo(Device::class, 'device_id', 'id');
+    }
+
     public function type()
     {
-        return $this->belongsTo(Dict::class, 'type_value', 'value')
-            ->withDefault([
-                'type' => 'hylx',
-            ]);
+        return $this->belongsTo(Garbage::class, 'ljlx_value', 'value');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
 
     public function address()
     {
-        return $this->belongsTo(Address::class, 'address_id', 'id');
+        return $this->hasOneThrough(Address::class, Customer::class, 'id', 'id', 'customer_id', 'address_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

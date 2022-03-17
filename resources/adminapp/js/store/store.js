@@ -8,6 +8,8 @@ import PermissionsIndex from './cruds/Permissions'
 import PermissionsSingle from './cruds/Permissions/single'
 import RolesIndex from './cruds/Roles'
 import RolesSingle from './cruds/Roles/single'
+import DropsIndex from './cruds/Drops'
+import DropsSingle from './cruds/Drops/single'
 import UsersIndex from './cruds/Users'
 import UsersSingle from './cruds/Users/single'
 import ProductCategoriesIndex from './cruds/ProductCategories'
@@ -17,8 +19,9 @@ import ProductTagsSingle from './cruds/ProductTags/single'
 import ProductsIndex from './cruds/Products'
 import ProductsSingle from './cruds/Products/single'
 import AddressesIndex from './cruds/Addresses'
+import AddressesSingle from './cruds/Addresses/single'
 import CustomersIndex from './cruds/Customers'
-import PAddressesSingle from './cruds/Addresses/single'
+import CustomersSingle from './cruds/Customers/single'
 import ContactCompaniesIndex from './cruds/ContactCompanies'
 import ContactCompaniesSingle from './cruds/ContactCompanies/single'
 import ContactContactsIndex from './cruds/ContactContacts'
@@ -45,8 +48,11 @@ export default new Vuex.Store({
         ProductsIndex,
         ProductsSingle,
         AddressesIndex,
+        AddressesSingle,
         CustomersIndex,
-        PAddressesSingle,
+        CustomersSingle,
+        DropsIndex,
+        DropsSingle,
         ContactCompaniesIndex,
         ContactCompaniesSingle,
         ContactContactsIndex,
