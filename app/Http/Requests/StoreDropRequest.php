@@ -10,31 +10,27 @@ class StoreDropRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('user_create');
+        return Gate::allows('drop_create');
     }
 
     public function rules()
     {
         return [
-            'name' => [
-                'string',
-                'required',
-            ],
-            'email' => [
-                'required',
-                'unique:users',
-            ],
-            'password' => [
-                'required',
-            ],
-            'roles' => [
-                'required',
-                'array',
-            ],
-            'roles.*.id' => [
+            'customer_id' => [
                 'integer',
-                'exists:roles,id',
+                'exists:customers,id',
+                'required',
             ],
+            'ljlx_value' => [
+                'integer',
+                'exists:garbages,value',
+                'required',
+            ],
+            'device_id' => [
+                'integer',
+                'exists:devices,id',
+                'required',
+            ]
         ];
     }
 }

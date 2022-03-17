@@ -7,25 +7,31 @@ use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class UpdateAddressRequest extends FormRequest
+class UpdateDropRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('address_edit');
+        return Gate::allows('drop_edit');
     }
 
     public function rules()
     {
         return [
-            'name' => [
-                'string',
-                'nullable',
-            ],
-            'type_value' => [
+            'customer_id' => [
                 'integer',
-                'exists:dicts,value',
+                'exists:customers,id',
                 'required',
             ],
+            'ljlx_value' => [
+                'integer',
+                'exists:garbages,value',
+                'required',
+            ],
+            'device_id' => [
+                'integer',
+                'exists:devices,id',
+                'required',
+            ]
         ];
     }
 }
