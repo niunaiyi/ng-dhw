@@ -6,11 +6,11 @@
           <div class="card">
             <div class="card-header card-header-primary card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">add</i>
+                <i class="material-icons">edit</i>
               </div>
               <h4 class="card-title">
-                创建
-                <strong>地址</strong>
+                编辑
+                <strong>客户</strong>
               </h4>
             </div>
             <div class="card-body">
@@ -208,15 +208,22 @@ export default {
   computed: {
     ...mapGetters('ContactContactsSingle', ['entry', 'loading', 'lists'])
   },
-  mounted() {
-    this.fetchCreateData()
-  },
   beforeDestroy() {
     this.resetState()
   },
+  watch: {
+    '$route.params.id': {
+      immediate: true,
+      handler() {
+        this.resetState()
+        this.fetchEditData(this.$route.params.id)
+      }
+    }
+  },
   methods: {
     ...mapActions('ContactContactsSingle', [
-      'storeData',
+      'fetchEditData',
+      'updateData',
       'resetState',
       'setCompany',
       'setContactFirstName',
@@ -225,8 +232,7 @@ export default {
       'setContactPhone2',
       'setContactEmail',
       'setContactSkype',
-      'setContactAddress',
-      'fetchCreateData'
+      'setContactAddress'
     ]),
     updateCompany(value) {
       this.setCompany(value)
@@ -253,10 +259,10 @@ export default {
       this.setContactAddress(e.target.value)
     },
     submitForm() {
-      this.storeData()
+      this.updateData()
         .then(() => {
           this.$router.push({ name: 'contact_contacts.index' })
-          this.$eventHub.$emit('create-success')
+          this.$eventHub.$emit('update-success')
         })
         .catch(error => {
           this.status = 'failed'

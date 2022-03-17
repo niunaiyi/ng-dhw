@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreAddressRequest;
-use App\Http\Requests\UpdateAddressRequest;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\Admin\AddressResource;
 use App\Models\Address;
 use App\Models\Dict;
@@ -21,7 +21,7 @@ class AddressesApiController extends Controller
         return new AddressResource(Address::with(['type'])->advancedFilter());
     }
 
-    public function store(StoreAddressRequest $request)
+    public function store(StoreCustomerRequest $request)
     {
         $address = Address::create($request->validated());
 
@@ -48,7 +48,7 @@ class AddressesApiController extends Controller
         return new AddressResource($address->load(['dict']));
     }
 
-    public function update(UpdateAddressRequest $request, Address $address)
+    public function update(UpdateCustomerRequest $request, Address $address)
     {
         $address->update($request->validated());
 
@@ -67,6 +67,14 @@ class AddressesApiController extends Controller
                 'type' => Dict::where('type', 'dzlx')->get(['id', 'name']),
             ],
         ]);
+    }
+
+    public function  children($id)
+    {
+        abort_if(Gate::denies('address_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $address = Address::find($id);
+        return new AddressResource($address->children()->get());
     }
 
     public function destroy(Address $address)

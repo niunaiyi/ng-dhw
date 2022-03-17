@@ -40,7 +40,6 @@ class Address extends Model
 
     protected $fillable = [
         'name',
-        'fullname',
         'type',
         'created_at',
         'updated_at',
@@ -55,13 +54,57 @@ class Address extends Model
             ]);
     }
 
-    public function parent()
-    {
-        return $this->belongsTo(Address::class, 'parent_id', 'id');
-    }
-
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public static function updateFullname($id)
+    {
+        $addresses = Address::descendantsAndSelf($id);
+        Address::chunk(1000, function ($addresses) {
+            foreach ($addresses as $address) {
+                $name = '';
+                $ancestors = $address->ancestors;
+                foreach ($ancestors as $ancestor) {
+                    $name = $name . $ancestor->name;
+                }
+                $address->fullname = $name . $address->name;
+                echo $address->fullname . PHP_EOL;
+                $address->save();
+            }
+        });
+    }
+
+    public static function updateAllFullname()
+    {
+        Address::where('fullname', null)->chunk(1000, function ($addresses) use ($count, $i) {
+            foreach ($addresses as $address) {
+                $name = '';
+                $ancestors = $address->ancestors;
+                foreach ($ancestors as $ancestor) {
+                    $name = $name . $ancestor->name;
+                }
+                $address->fullname = $name . $address->name;
+                echo $address->fullname . PHP_EOL;
+                $address->save();
+            }
+        });
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::created(function ($model) {
+            Address::updateFullname($model->id);
+        });
+
+        self::updated(function ($model) {
+            if ($model->isDirty('name')) {
+                Address::updateFullname($model->id);
+            }
+        });
+    }
+
 }

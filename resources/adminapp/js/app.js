@@ -25,12 +25,14 @@ import GlobalComponents from './globalComponents'
 import GlobalDirectives from './globalDirectives'
 import GlobalMixins from './mixins/global'
 import { mapGetters, mapActions } from 'vuex'
-import ZkTable from 'vue-table-with-tree-grid'
+import ElementUI from 'element-ui'
+import locale from 'element-ui/lib/locale/lang/en'
 
+Vue.use(ElementUI, { locale })
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(GlobalMixins)
-Vue.use(ZkTable)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

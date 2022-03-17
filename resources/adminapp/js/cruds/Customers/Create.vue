@@ -10,7 +10,7 @@
               </div>
               <h4 class="card-title">
                 创建
-                <strong>地址</strong>
+                <strong>客户</strong>
               </h4>
             </div>
             <div class="card-body">
@@ -23,21 +23,21 @@
                   <div
                     class="form-group bmd-form-group"
                     :class="{
-                      'has-items': entry.company_id !== null,
-                      'is-focused': activeField == 'company'
+                      'has-items': entry.type_value !== null,
+                      'is-focused': activeField == 'type'
                     }"
                   >
                     <label class="bmd-label-floating required">{{
-                      $t('cruds.contactContact.fields.company')
+                      $t('cruds.customer.fields.type')
                     }}</label>
                     <v-select
-                      name="company"
-                      label="company_name"
-                      :key="'company-field'"
-                      :value="entry.company_id"
+                      name="type"
+                      label="name"
+                      :key="'type-field'"
+                      :value="entry.value"
                       :options="lists.company"
                       :reduce="entry => entry.id"
-                      @input="updateCompany"
+                      @input="updateCustomer"
                       @search.focus="focusField('company')"
                       @search.blur="clearFocus"
                     />

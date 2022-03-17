@@ -97,12 +97,17 @@ export default {
         this.resetState()
     },
     methods: {
-        ...mapActions('PermissionsSingle', ['storeData', 'resetState', 'setTitle']),
-        updateTitle(e) {
-            this.setTitle(e.target.value)
-        },
+        ...mapActions('PermissionsSingle',[
+                'storeData',
+                'resetState',
+                'setName',
+                'setTitle'
+            ]),
         updateName(e) {
             this.setName(e.target.value)
+        },
+        updateTitle(e) {
+            this.setTitle(e.target.value)
         },
         submitForm() {
             this.storeData()

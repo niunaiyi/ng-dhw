@@ -2,20 +2,26 @@ function initialState() {
     return {
         entry: {
             id: null,
-            name: '',
-            title: '',
+            realname: null,
+            nickname: '',
+            phonenumber: '',
+            cardno: '',
             created_at: '',
             updated_at: '',
             deleted_at: ''
+        },
+        lists: {
+            company: []
         },
         loading: false
     }
 }
 
-const route = 'permissions'
+const route = 'customers'
 
 const getters = {
     entry: state => state.entry,
+    lists: state => state.lists,
     loading: state => state.loading
 }
 
@@ -83,11 +89,20 @@ const actions = {
                 })
         })
     },
-    setName({commit}, value) {
-        commit('setName', value)
+    setPhonenumber({commit}, value) {
+        commit('setPhonenumber', value)
     },
-    setTitle({commit}, value) {
-        commit('setTitle', value)
+    setType({commit}, value) {
+        commit('setType', value)
+    },
+    setRealname({commit}, value) {
+        commit('setRealname', value)
+    },
+    setNickname({commit}, value) {
+        commit('setNickname', value)
+    },
+    setCardno({commit}, value) {
+        commit('setCardno', value)
     },
     setCreatedAt({commit}, value) {
         commit('setCreatedAt', value)
@@ -98,9 +113,15 @@ const actions = {
     setDeletedAt({commit}, value) {
         commit('setDeletedAt', value)
     },
+    fetchCreateData({commit}) {
+        axios.get(`${route}/create`).then(response => {
+            commit('setLists', response.data.meta)
+        })
+    },
     fetchEditData({commit, dispatch}, id) {
         axios.get(`${route}/${id}/edit`).then(response => {
             commit('setEntry', response.data.data)
+            commit('setLists', response.data.meta)
         })
     },
     fetchShowData({commit, dispatch}, id) {
@@ -117,11 +138,20 @@ const mutations = {
     setEntry(state, entry) {
         state.entry = entry
     },
-    setName(state, value) {
-        state.entry.name = value
+    setType(state, value) {
+        state.entry.type_value = value
     },
-    setTitle(state, value) {
-        state.entry.title = value
+    setPhonenumber(state, value) {
+        state.entry.phonenumber = value
+    },
+    setRealname(state, value) {
+        state.entry.realname = value
+    },
+    setNickname(state, value) {
+        state.entry.nickname = value
+    },
+    setCardno(state, value) {
+        state.entry.cardno = value
     },
     setCreatedAt(state, value) {
         state.entry.created_at = value
@@ -131,6 +161,9 @@ const mutations = {
     },
     setDeletedAt(state, value) {
         state.entry.deleted_at = value
+    },
+    setLists(state, lists) {
+        state.lists = lists
     },
     setLoading(state, loading) {
         state.loading = loading

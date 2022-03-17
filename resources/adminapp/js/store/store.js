@@ -17,6 +17,7 @@ import ProductTagsSingle from './cruds/ProductTags/single'
 import ProductsIndex from './cruds/Products'
 import ProductsSingle from './cruds/Products/single'
 import AddressesIndex from './cruds/Addresses'
+import CustomersIndex from './cruds/Customers'
 import PAddressesSingle from './cruds/Addresses/single'
 import ContactCompaniesIndex from './cruds/ContactCompanies'
 import ContactCompaniesSingle from './cruds/ContactCompanies/single'
@@ -44,6 +45,7 @@ export default new Vuex.Store({
         ProductsIndex,
         ProductsSingle,
         AddressesIndex,
+        CustomersIndex,
         PAddressesSingle,
         ContactCompaniesIndex,
         ContactCompaniesSingle,

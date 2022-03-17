@@ -33,6 +33,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     //Address
     Route::resource('addresses', 'AddressesApiController');
+    Route::get('addresses/{id}/children', 'AddressesApiController@children');
+
+    //Customer
+    Route::resource('customers', 'CustomersApiController');
 
     // Contact Company
     Route::resource('contact-companies', 'ContactCompanyApiController');

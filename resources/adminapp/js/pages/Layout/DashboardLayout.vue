@@ -88,6 +88,12 @@ export default {
                             icon: 'table_view',
                             path: {name: 'addresses.index'},
                             gate: 'address_access'
+                        },
+                        {
+                            title: 'cruds.customer.title',
+                            icon: 'table_view',
+                            path: {name: 'customers.index'},
+                            gate: 'customer_access'
                         }
                     ]
                 },

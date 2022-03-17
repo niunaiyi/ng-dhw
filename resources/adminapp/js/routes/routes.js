@@ -198,6 +198,30 @@ const routes = [
                         name: 'addresses.edit',
                         component: () => import('@cruds/Addresses/Edit.vue'),
                         meta: {title: 'cruds.address.title'}
+                    },
+                    {
+                        path: 'customers',
+                        name: 'customers.index',
+                        component: () => import('@cruds/Customers/Index.vue'),
+                        meta: {title: 'cruds.customer.title'}
+                    },
+                    {
+                        path: 'customers/create',
+                        name: 'customers.create',
+                        component: () => import('@cruds/Customers/Create.vue'),
+                        meta: {title: 'cruds.customer.title'}
+                    },
+                    {
+                        path: 'customers/:id',
+                        name: 'customers.show',
+                        component: () => import('@cruds/Customers/Show.vue'),
+                        meta: {title: 'cruds.customer.title'}
+                    },
+                    {
+                        path: 'customers/:id/edit',
+                        name: 'customers.edit',
+                        component: () => import('@cruds/Customers/Edit.vue'),
+                        meta: {title: 'cruds.customer.title'}
                     }
                 ]
             },

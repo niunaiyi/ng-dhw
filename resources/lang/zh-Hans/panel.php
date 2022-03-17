@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'ng-dhw',
+    'site_title' => env('APP_NAME'),
 ];
