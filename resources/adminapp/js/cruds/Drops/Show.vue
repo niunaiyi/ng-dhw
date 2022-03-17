@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">remove_red_eye</i>
+                            <em class="material-icons">remove_red_eye</em>
                         </div>
                         <h4 class="card-title">
                             查看
@@ -20,7 +20,6 @@
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <div class="table">
-                                        <tbody>
                                         <tr>
                                             <td class="text-primary">
                                                 {{ $t('cruds.drop.fields.id') }}
@@ -43,18 +42,6 @@
                                         </tr>
                                         <tr>
                                             <td class="text-primary">
-                                                {{ $t('cruds.drop.fields.device') }}
-                                            </td>
-                                            <td>
-                                                <datatable-single
-                                                    :row="entry"
-                                                    field="device.name"
-                                                >
-                                                </datatable-single>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-primary">
                                                 {{ $t('cruds.drop.fields.address') }}
                                             </td>
                                             <td>
@@ -67,13 +54,36 @@
                                         </tr>
                                         <tr>
                                             <td class="text-primary">
+                                                {{ $t('cruds.drop.fields.device') }}
+                                            </td>
+                                            <td>
+                                                <datatable-single
+                                                    :row="entry"
+                                                    field="device.name"
+                                                >
+                                                </datatable-single>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-primary">
+                                                {{ $t('cruds.drop.fields.type') }}
+                                            </td>
+                                            <td>
+                                                <datatable-single
+                                                    :row="entry"
+                                                    field="type.name"
+                                                >
+                                                </datatable-single>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-primary">
                                                 {{ $t('cruds.drop.fields.created_at') }}
                                             </td>
                                             <td>
                                                 {{ entry.created_at }}
                                             </td>
                                         </tr>
-                                        </tbody>
                                     </div>
                                 </div>
                             </div>
