@@ -44,7 +44,39 @@
                     <span>Loading...</span>
                   </div>
                 </div>
+                <el-table
+                  :data="addressData"
+                  style="width: 100%"
+                  row-key="id"
+                  lazy
+                  :load="load"
+                  :tree-props="{
+                    children: 'children',
+                    hasChildren: 'hasChildren',
+                  }"
+                >
+                  <el-table-column prop="name" label="地址"> </el-table-column>
+                  <el-table-column label="类型">
+                    <template slot-scope="scope">
+                      <datatable-single
+                        field="type.name"
+                        :row="scope.row"
+                      ></datatable-single>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="created_at" label="日期" width="180">
+                  </el-table-column>
+                  <el-table-column label="操作" width="160">
+                    <template slot-scope="scope">
+                      <datatable-actions
+                        :row="scope.row"
+                        :xprops="xprops"
+                      ></datatable-actions>
+                    </template>
+                  </el-table-column>
+                </el-table>
                 <datatable
+                  v-show="false"
                   :columns="columns"
                   :data="data"
                   :total="total"
@@ -66,58 +98,67 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import DatatableActions from '@components/Datatables/DatatableActions'
-import TranslatedHeader from '@components/Datatables/TranslatedHeader'
-import HeaderSettings from '@components/Datatables/HeaderSettings'
-import GlobalSearch from '@components/Datatables/GlobalSearch'
-import DatatableSingle from '@components/Datatables/DatatableSingle'
+import { mapGetters, mapActions } from "vuex";
+import DatatableActions from "@components/Datatables/DatatableActions";
+import TranslatedHeader from "@components/Datatables/TranslatedHeader";
+import HeaderSettings from "@components/Datatables/HeaderSettings";
+import GlobalSearch from "@components/Datatables/GlobalSearch";
+import DatatableSingle from "@components/Datatables/DatatableSingle";
 
 export default {
   components: {
     GlobalSearch,
-    HeaderSettings
+    HeaderSettings,
+    DatatableActions,
+    DatatableSingle,
   },
   data() {
     return {
       columns: [
         {
-          title: 'cruds.address.fields.id',
-          field: 'id',
+          title: "cruds.address.fields.id",
+          field: "id",
           thComp: TranslatedHeader,
           sortable: true,
-          colStyle: 'width: 100px;'
+          colStyle: "width: 100px;",
         },
         {
-          title: 'cruds.address.fields.name',
-          field: 'fullname',
+          title: "cruds.address.fields.fullname",
+          field: "fullname",
           thComp: TranslatedHeader,
-          sortable: true
+          sortable: true,
         },
         {
-          title: 'cruds.address.fields.type',
-          field: 'type.name',
+          title: "cruds.address.fields.name",
+          field: "name",
+          thComp: TranslatedHeader,
+          sortable: true,
+        },
+        {
+          title: "cruds.address.fields.type",
+          field: "type.name",
           thComp: TranslatedHeader,
           tdComp: DatatableSingle,
-          sortable: true
+          sortable: true,
         },
         {
-          title: 'global.actions',
+          title: "global.actions",
           thComp: TranslatedHeader,
           tdComp: DatatableActions,
           visible: true,
-          thClass: 'text-right',
-          tdClass: 'text-right td-actions',
-          colStyle: 'width: 150px;'
-        }
+          thClass: "text-right",
+          tdClass: "text-right td-actions",
+          colStyle: "width: 150px;",
+        },
       ],
-      query: { sort: 'id', order: 'desc', limit: 100, s: '' },
+      query: { sort: "id", order: "asc", limit: 100, s: "" },
       xprops: {
-        module: 'AddressesIndex',
-        route: 'addresses',
-        permission_prefix: 'address_'
-      }
-    }
+        module: "AddressesIndex",
+        route: "addresses",
+        permission_prefix: "address_",
+      },
+      addressData: [],
+    };
   },
   beforeDestroy() {
     this.resetState()
@@ -135,11 +176,33 @@ export default {
     }
   },
   methods: {
-    ...mapActions('AddressesIndex', [
-      'fetchIndexData',
-      'setQuery',
-      'resetState'
-    ])
-  }
-}
+    ...mapActions("AddressesIndex", [
+      "fetchIndexData",
+      "setQuery",
+      "resetState",
+    ]),
+    async load(tree, treeNode, resolve) {
+      resolve(await this.getAddressChildren(tree.id));
+    },
+    getAddress() {
+      axios
+        .get(`addresses/1`)
+        .then(async (response) => {
+          this.addressData = [response.data.data];
+        })
+        .catch((error) => {
+          message = error.response.data.message || error.message;
+          // TODO error handling
+        })
+        .finally(() => {
+          // commit('setLoading', false)
+        });
+    },
+    getAddressChildren(id) {
+      return axios.get(`addresses/${id}/children`).then((response) => {
+        return response.data.data;
+      });
+    },
+  },
+};
 </script>

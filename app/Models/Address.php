@@ -46,6 +46,10 @@ class Address extends Model
         'deleted_at',
     ];
 
+    protected $appends = [
+        'hasChildren',
+    ];
+
     public function type()
     {
         return $this->belongsTo(Dict::class, 'type_value', 'value')
@@ -105,6 +109,16 @@ class Address extends Model
                 Address::updateFullname($model->id);
             }
         });
+    }
+
+    public function hasChildren()
+    {
+        return $this->hasMany(Address::class, 'parent_id', 'id')->count() > 0;
+    }
+    
+    public function getHasChildrenAttribute()
+    {
+        return !$this->isLeaf();
     }
 
 }

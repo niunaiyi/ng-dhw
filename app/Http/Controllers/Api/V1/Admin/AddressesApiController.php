@@ -69,12 +69,10 @@ class AddressesApiController extends Controller
         ]);
     }
 
-    public function  children($id)
+    public function children($id)
     {
         abort_if(Gate::denies('address_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $address = Address::find($id);
-        return new AddressResource($address->children()->get());
+        return new AddressResource(Address::find($id)->children()->with('type')->get());
     }
 
     public function destroy(Address $address)

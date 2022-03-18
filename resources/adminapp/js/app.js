@@ -27,8 +27,14 @@ import GlobalMixins from './mixins/global'
 import { mapGetters, mapActions } from 'vuex'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/en'
+import { Tree, Button, Table, TableColumn } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI, { locale })
+Vue.component(Table.name, Table);
+Vue.component(TableColumn.name, TableColumn);
+Vue.component(Tree.name, Tree);
+Vue.component(Button.name, Button);
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(GlobalMixins)
