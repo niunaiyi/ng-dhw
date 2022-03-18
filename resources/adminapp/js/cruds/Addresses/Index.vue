@@ -175,6 +175,9 @@ export default {
       deep: true
     }
   },
+  mounted() {
+      this.getAddress()
+  },
   methods: {
     ...mapActions("AddressesIndex", [
       "fetchIndexData",

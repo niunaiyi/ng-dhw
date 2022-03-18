@@ -45,7 +45,7 @@ class AddressesApiController extends Controller
     {
         abort_if(Gate::denies('address_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AddressResource($address->load(['dict']));
+        return new AddressResource($address->load(['type']));
     }
 
     public function update(UpdateCustomerRequest $request, Address $address)
